@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcos Braverman | Portafolio</title>
-    <!-- Link a iconos profesionales (FontAwesome) -->
+    <!-- Iconos profesionales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,30 +15,75 @@
     </header>
 
     <main class="container">
+        <!-- Sobre mí -->
         <section class="card">
             <h2><i class="fa-solid fa-user"></i> Sobre mí</h2>
-            <p>Estudiante de Analista de Sistemas. Enfocado en la lógica de programación, el diseño de arquitecturas robustas y la optimización de bases de datos.</p>
+            <p>Estudiante de la Tecnicatura Superior en Analista de Sistemas. Enfocado en la lógica de programación, el diseño de arquitecturas robustas y la gestión optimizada de bases de datos relacionales.</p>
         </section>
 
+        <!-- Filtros interactivos -->
         <section class="filter-section">
-            <h2><i class="fa-solid fa-code"></i> Proyectos</h2>
-            <!-- Aquí irán tus proyectos -->
-             <div class="proyectos-grid">
-    <!-- Proyecto de prueba -->
-    <article class="card proyecto-card">
-        <div class="card-icon">
-            <i class="fa-brands fa-python fa-2x"></i>
-        </div>
-        <h3>Sistema de Análisis de Datos</h3>
-        <p>Automatización de procesamiento de logs mediante scripts de Python, optimizando la lectura de datos un 30%.</p>
-        <div class="tech-tags">
-            <span><i class="fa-brands fa-python"></i> Python</span>
-            <span><i class="fa-solid fa-database"></i> SQL</span>
-        </div>
-        <a href="#" class="btn-link">Ver repositorio</a>
-    </article>
-</div>
+            <h2><i class="fa-solid code"></i> Proyectos</h2>
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="filtrarProyectos('todos')">Todos</button>
+                <button class="btn-filter" onclick="filtrarProyectos('python')">Python</button>
+                <button class="btn-filter" onclick="filtrarProyectos('sql')">SQL Server</button>
+            </div>
         </section>
+
+        <!-- Grilla de Proyectos -->
+        <div class="proyectos-grid">
+            <!-- Proyecto Python -->
+            <article class="card proyecto-card" data-tech="python">
+                <div class="card-icon">
+                    <i class="fa-brands fa-python fa-2x"></i>
+                </div>
+                <h3>Automatizacion y Procesamiento de Datos</h3>
+                <p>Script desarrollado en Python para la lectura, validación y estructuración de flujos de datos locales, optimizando procesos repetitivos.</p>
+                <div class="tech-tags">
+                    <span><i class="fa-brands fa-python"></i> Python</span>
+                </div>
+                <a href="https://github.com/mark153567" target="_blank" class="btn-link">Ver repositorio &rarr;</a>
+            </article>
+
+            <!-- Proyecto SQL Server -->
+            <article class="card proyecto-card" data-tech="sql">
+                <div class="card-icon">
+                    <i class="fa-solid fa-database fa-2x"></i>
+                </div>
+                <h3>Modelo Relacional y T-SQL</h3>
+                <p>Diseño de esquema de base de datos en SQL Server, implementando restricciones de integridad, claves y procedimientos almacenados eficientes.</p>
+                <div class="tech-tags">
+                    <span><i class="fa-solid fa-database"></i> SQL Server</span>
+                    <span><i class="fa-solid fa-terminal"></i> T-SQL</span>
+                </div>
+                <a href="https://github.com/mark153567" target="_blank" class="btn-link">Ver repositorio &rarr;</a>
+            </article>
+        </div>
     </main>
+
+    <footer>
+        <p>Contacto: <a href="mailto:marcosbraver@gmail.com">marcosbraver@gmail.com</a></p>
+    </footer>
+
+    <!-- Script de filtrado -->
+    <script>
+        function filtrarProyectos(tech) {
+            const tarjetas = document.querySelectorAll('.proyecto-card');
+            const botones = document.querySelectorAll('.btn-filter');
+
+            botones.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            tarjetas.forEach(tarjeta => {
+                const tecnologias = tarjeta.getAttribute('data-tech');
+                if (tech === 'todos' || tecnologias.includes(tech)) {
+                    tarjeta.style.display = 'block';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
